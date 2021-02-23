@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const AddWord = ( {addWord} ) => {
 
@@ -23,19 +24,69 @@ const AddWord = ( {addWord} ) => {
         console.log(word2)
     }
 
+    useEffect(() => {
+        console.log("Loading...");
+        
+
+      }, []);
+      const {engWord,engWordListen,engWordParticiplePas,engWordParticiplePasListen,engWordSimplePas,engWordSimplePasListen,espWord} = word2;
+
+const fetchData = async (engWord,engWordListen,engWordParticiplePas,engWordParticiplePasListen,engWordSimplePas,engWordSimplePasListen,espWord) => {
+          try {
+            const { data } = await axios.post(
+                // aqui la direccion de API
+              "https://jsonplaceholder.typicode.com/posts",
+              {
+
+                // Cuerpo de los datos a enviar
+                // Es decir 
+                engWord,
+                engWordListen,
+                engWordParticiplePas,
+                engWordParticiplePasListen,
+                engWordSimplePas,
+                engWordSimplePasListen,
+                espWord
+
+              }
+            );
+            console.log(data);
+          } catch (error) {
+            console.log(error);
+          }
+        };      
+
+
+    const handleSubmit = (event) =>{
+        event.preventDefault();
+        // console.log('Submit');
+        //  Debes validar los campos
+
+
+        // Llamar a la funcion de axios que va enviar la informacion 
+        const datos= await fetchData(engWord,engWordListen,engWordParticiplePas,engWordParticiplePasListen,engWordSimplePas,engWordSimplePasListen,espWord);
+        //  Haci debe enviar los datos a tu API.
+        addWord(word2)
+        setWord2(initialFormState)
+
+    }
 
 return (
     <form
         method="POST"
         className="form-verbs rounded p-5 m-5"
-        onSubmit = { event => {
-            event.preventDefault()
-            if (!word2.engWord || !word2.engWordListen || !word2.engWordParticiplePas || !word2.engWordParticiplePasListen || !word2.engWordSimplePas || !word2.engWordSimplePasListen || !word2.espWord) return
+        // onSubmit = { event => {
+        //     event.preventDefault()
+        //     if (!word2.engWord || !word2.engWordListen || !word2.engWordParticiplePas || !word2.engWordParticiplePasListen || !word2.engWordSimplePas || !word2.engWordSimplePasListen || !word2.espWord) return
 
-            addWord(word2)
-            setWord2(initialFormState)
 
-        }}
+
+
+        //     addWord(word2)
+        //     setWord2(initialFormState)
+
+        // }}
+        onSubmit={handleSubmit}
     >
         <div className="mb-3">
             <label className="form-label">Word:</label>
