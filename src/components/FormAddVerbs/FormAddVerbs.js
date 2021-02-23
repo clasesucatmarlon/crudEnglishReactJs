@@ -18,10 +18,10 @@ const handleSubmit = (event) => {
 
     /* const verbs = JSON.parse(data) || []; */
 
-    let verb = []
+  /*   let verb = []
     for (const [key, value] of formData.entries()) {
         verb[key] = value;
-    }
+    } */
 
     //setNewWord(verb);
     //console.log('formulario: ', verb);
@@ -30,7 +30,7 @@ const handleSubmit = (event) => {
     /* contact.id = uuid(); */
 
     // verb.push(verb);
-    setData(verb);
+    //setData(verb);
 
     /* localStorage.setItem("contacts", JSON.stringify(contacts)); */
 
