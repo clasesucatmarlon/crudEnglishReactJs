@@ -1,0 +1,9 @@
+.logo {
+    width: 17%;
+    height: 17%;
+}
+
+.border {
+    margin-top: 2rem;
+    border-top: 2px solid gray;
+}
